@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Navigation from './Navigation/Navigation';
+import Fire from './Fire';
+import Water from './Water';
+import Rock from './Rock';
+import Electric from './Electric';
+
 
 function App() {
+
+  const [pokemon, setPokemon] = useState("Seleccione un tipo de pokemon");
+
+  const handlePokemon = (param) => {
+    if(param === 1){
+      setPokemon(<Fire/>)
+    }else if(param ===2){
+      setPokemon(<Water/>)
+    }else if(param === 3){
+      setPokemon(<Rock/>)
+    }else if(param === 4){
+      setPokemon(<Electric/>)
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navigation pokemonFn = {handlePokemon}></Navigation>
+      {pokemon}
     </div>
   );
 }
